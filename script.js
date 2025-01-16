@@ -1,26 +1,30 @@
-const map = L.map('map').setView([53.992666, 27.320273], 13);
-const modal = document.getElementById('modal');
-const closeButton = document.getElementById('close');
-const image = document.getElementById('image');
-const title = document.getElementById('title');
+const map = L.map("map").setView([53.992666, 27.320273], 13);
+const modal = document.getElementById("modal");
+const closeButton = document.getElementById("close");
+const image = document.getElementById("image");
+const title = document.getElementById("title");
 
-closeButton.addEventListener('click', onModalClose);
+closeButton.addEventListener("click", onModalClose);
 
-const OpenStreetMap_BZH = L.tileLayer('https://tile.openstreetmap.bzh/br/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles courtesy of <a href="http://www.openstreetmap.bzh/" target="_blank">Breton OpenStreetMap Team</a>',
-}).addTo(map);
+const OpenStreetMap_BZH = L.tileLayer(
+  "https://tile.openstreetmap.bzh/br/{z}/{x}/{y}.png",
+  {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles courtesy of <a href="http://www.openstreetmap.bzh/" target="_blank">Breton OpenStreetMap Team</a>',
+  }
+).addTo(map);
 
 function onMarkerClick(config) {
   return function (e) {
-    modal.classList.add('open');
+    modal.classList.add("open");
     image.src = config.src;
     title.innerText = config.label;
-  }
+  };
 }
 
 function onModalClose(e) {
-  modal.classList.remove('open');
+  modal.classList.remove("open");
 }
 
 const configs = [
@@ -56,22 +60,28 @@ const configs = [
   },
 ];
 
-const markers = configs.map(
-  config => L.marker(config.coords)
+const markers = configs.map((config) =>
+  L.marker(config.coords)
     .addTo(map)
-    .bindTooltip(config.label, { permanent: true, direction: 'right' })
-    .on('click', onMarkerClick(config))
+    .bindTooltip(config.label, { permanent: true, direction: "right" })
+    .on("click", onMarkerClick(config))
 );
 
 const polygon1 = L.polygon([
   [54.00140725853155, 27.3111317697426],
   [54.00058233994049, 27.309039325319457],
   [53.98515936618216, 27.328621227237424],
-  [53.98596958645076, 27.330560565971066]
-]).addTo(map).bindPopup("Место для сплава")
+  [53.98596958645076, 27.330560565971066],
+])
+  .addTo(map)
+  .bindPopup("Место для сплава");
 
-const polygon2 = L.polygon([
-  [53.99970895963, 27.30371626223849],
-  [53.997278611408966, 27.30515009794397]
-]).addTo(map).bindPopup("Отличное место для рыбалки с удобным берегом")
-
+const polygon2 = L.polygon(
+  [
+    [53.99970895963, 27.30371626223849],
+    [53.997278611408966, 27.30515009794397],
+  ],
+  { weight: 10 }
+)
+  .addTo(map)
+  .bindPopup("Отличное место для рыбалки с удобным берегом");
