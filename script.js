@@ -85,3 +85,10 @@ const polygon2 = L.polygon(
 )
   .addTo(map)
   .bindPopup("Отличное место для рыбалки с удобным берегом");
+
+var circle = L.circle([53.998848111522534, 27.30984758889346], {
+  color: 'green',
+  fillColor: '#09791f',
+  fillOpacity: 0.5,
+  radius: 100
+}).addTo(map);
