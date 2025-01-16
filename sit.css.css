@@ -25,7 +25,7 @@ main {
 
 #map {
   width: 100%;
-  height: 800px;
+  height: 400px;
   margin: 0 auto;
   border: 2px solid #ccc;
   z-index: 1;
@@ -37,21 +37,31 @@ main {
 }
 
 #modal {
+  pointer-events: none;
+  opacity: 0;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  position: absolute;
+  position: fixed;
   padding: 100px;
   z-index: 100;
+  transition: 0.3s;
   background-color: #000000e5;
 
-.image-container {
-  width: 100%;
-  height: 100%;
-}
-  /* #image {
+  &.open {
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  #image-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  #image {
     object-fit: contain;
+    width: inherit;
   }
 
   #close {
@@ -67,9 +77,5 @@ main {
     color: #fff;
     font-size: 64px;
     margin-bottom: 40px;
-  } */
-}
-
-* {
-  background-color: #d400002d;
+  }
 }
