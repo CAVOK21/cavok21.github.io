@@ -41,7 +41,7 @@ const configs = [
   {
     coords: [54.03599982506858, 27.248248818462006],
     label: "Хмелевский водопад",
-    src: "/static/grebkanal.jpg",
+    src: "/static/hmeleyka.jpg",
   },
   {
     coords: [53.99998865610981, 27.31162980368535],
