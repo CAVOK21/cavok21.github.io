@@ -126,8 +126,7 @@ body {
   background-image: url("/static/header-bg.webp");
   background-position: center;
   background-repeat: no-repeat;
-  -o-object-fit: cover;
-     object-fit: cover;
+  background-size: cover; /* Use background-size to cover the element */
   height: 100vh;
   width: 100vw;
   -webkit-filter: blur(0);
