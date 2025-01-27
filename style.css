@@ -98,16 +98,20 @@ body {
 }
 
 #header-bg {
-  background-image: url("static/header-bg.webp");
+  background-image: url("/static/header-bg.webp");
   background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  height: 100vh;
+  width: 100vw;
   filter: blur(var(--scroll-blur, 0));
-  /* transition: 0.2s; */
+  transition: 0.1s;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
   position: absolute;
-  transition: filter 0.3s ease-in-out; /* Smooth transition */
+  transform: translate3d(0, 0, 0);
 }
 
 #title-wrapper {
@@ -197,6 +201,13 @@ a {
   }
 }
 
+@media (max-width: 460px) {
+  #map-title > span {
+    font-size: 1.5rem;
+    display: block;
+  }
+}
+
 footer {
   margin: 1rem clamp(1rem, 10%, 100px);
   font-size: 12px;
@@ -204,6 +215,7 @@ footer {
 }
 
 button {
+  background-color: transparent;
   cursor: pointer;
   transition: 0.3s;
   &:hover {
