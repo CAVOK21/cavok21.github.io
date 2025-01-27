@@ -1,89 +1,215 @@
+:root {
+  --black: #001c28;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
   color: #333;
-}
-
-header {
-  background: #fff;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
-main {
-  padding: 20px;
-  text-align: center;
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: var(--black);
 }
 
 #map {
   width: 100%;
-  height: 600px;
+  height: 70vh;
   margin: 0 auto;
   border: 2px solid #ccc;
   z-index: 1;
 }
 
-.description {
-  margin-top: 20px;
-  font-size: 18px;
-}
-
 #modal {
   pointer-events: none;
   opacity: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
+  padding: clamp(1rem, 10%, 100px);
   position: fixed;
-  padding: 100px;
-  padding-top: 20px;
   z-index: 100;
-  transition: 0.3s;
-  background-color: #000000e5;
+  background-color: #00000076;
+  color: var(--black);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 
   &.open {
     pointer-events: all;
     opacity: 1;
   }
 
-  #image-container {
+  > div {
+    padding: clamp(1rem, 3%, 2rem);
+    border-radius: 1rem;
+    position: relative;
+    transition: 0.3s;
+    background: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
+    flex-direction: column;
+    gap: 2rem;
 
-  #image {
-    object-fit: contain;
-    width: 100%;
-    height: calc(100% - 4rem);
-  }
+    .img-wrapper {
+      margin: auto;
+      height: calc(100% - 4rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  #close {
-    width: 3rem;
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    font-size: 24px;
-    cursor: pointer;
-    fill: #fff !important;
+    #image {
+      /* object-fit: contain;
+      border-radius: 1rem;
+      max-width: 100%;
+      max-height: calc(100% - 4rem);
+      margin: auto; */
+
+      object-fit: cover;
+      border-radius: 1rem;
+      width: 100vw;
+      max-height: 100%;
+      margin: auto;
+      max-width: 100%;
+      min-height: 100%;
+    }
+
+    #close {
+      width: 1.5rem;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 100%;
+      transition: 0.4s;
+      padding: 0.3rem;
+      &:hover {
+        background-color: #33333329;
+      }
+    }
   }
 
   #title {
-    color: #fff;
-    font-size: 64px;
-    margin-bottom: 40px;
+    font-size: 2rem;
+    margin-bottom: 24px;
+    text-align: center;
+    margin: 0 clamp(1rem, 10%, 2rem);
+  }
+}
+
+#header-bg {
+  background-image: url("static/header-bg.webp");
+  background-position: center;
+  filter: blur(var(--scroll-blur, 0));
+  /* transition: 0.2s; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  transition: filter 0.3s ease-in-out; /* Smooth transition */
+}
+
+#title-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    top: 37%;
+    height: fit-content;
+    position: sticky;
+    display: block;
+    margin: clamp(2rem, 20%, 100px) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5rem;
+    color: white;
+    text-transform: uppercase;
+    transition: color 0.1s ease-in-out;
+  }
+}
+
+.change-color {
+  color: hwb(185 var(--scroll-color, 100) 0%);
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 6rem;
+}
+
+#about {
+  max-width: 700px;
+  margin: 4rem 0 4rem 0;
+  padding: 0 clamp(1rem, 10%, 100px);
+}
+
+#map-title {
+  padding: 0 clamp(1rem, 10%, 100px);
+}
+
+button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 8px;
+
+  border: 1px solid #001c28;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+#buttons {
+  margin-top: 56px;
+  display: flex;
+  column-gap: 3rem;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1040px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  #title {
+    font-size: 1.5rem;
+  }
+}
+
+footer {
+  margin: 1rem clamp(1rem, 10%, 100px);
+  font-size: 12px;
+  color: gray;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.082);
+  }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.388);
   }
 }

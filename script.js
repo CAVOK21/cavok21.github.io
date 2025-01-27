@@ -5,6 +5,7 @@ const image = document.getElementById("image");
 const title = document.getElementById("title");
 
 closeButton.addEventListener("click", onModalClose);
+modal.addEventListener("click", onClickOutside);
 
 const OpenStreetMap_BZH = L.tileLayer(
   "https://tile.openstreetmap.bzh/br/{z}/{x}/{y}.png",
@@ -25,6 +26,12 @@ function onMarkerClick(config) {
 
 function onModalClose(e) {
   modal.classList.remove("open");
+}
+
+function onClickOutside(e) {
+  if (e.target === modal && modal.classList.contains("open")) {
+    modal.classList.remove("open");
+  }
 }
 
 const configs = [
@@ -87,8 +94,28 @@ const polygon2 = L.polygon(
   .bindPopup("Отличное место для рыбалки с удобным берегом");
 
 var circle = L.circle([53.998848111522534, 27.30984758889346], {
-  color: 'green',
-  fillColor: '#09791f',
+  color: "green",
+  fillColor: "#09791f",
   fillOpacity: 0.5,
-  radius: 100
+  radius: 100,
 }).addTo(map);
+
+function onScroll(e) {
+  const scrollOffset = window.scrollY;
+  const scrollRatio =
+    1 - Math.min((scrollOffset / window.screen.availHeight) * 3, 1); // keep the ratio between 0 and 1
+
+  // Update the CSS variable `--scroll-color` with the scroll ratio
+  document.documentElement.style.setProperty(
+    "--scroll-color",
+    scrollRatio * 100 + "%"
+  );
+
+  // Update the CSS variable `--scroll-blur` with the scroll offset
+  document.documentElement.style.setProperty(
+    "--scroll-blur",
+    `${Math.min(scrollOffset, 100)}px`
+  );
+}
+
+document.addEventListener("scroll", onScroll);
