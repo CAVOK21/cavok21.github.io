@@ -153,6 +153,9 @@ h2 {
   max-width: 700px;
   margin: 4rem 0 4rem 0;
   padding: 0 clamp(1rem, 10%, 100px);
+  span {
+    opacity: 70%;
+  }
 }
 
 #map-title {

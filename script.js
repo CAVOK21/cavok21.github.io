@@ -114,7 +114,7 @@ function onScroll(e) {
   // Update the CSS variable `--scroll-blur` with the scroll offset
   document.documentElement.style.setProperty(
     "--scroll-blur",
-    `${Math.min(scrollOffset, 100)}px`
+    `${Math.min(scrollOffset - window.screen.availHeight * 0.2, 300)}px`
   );
 }
 
